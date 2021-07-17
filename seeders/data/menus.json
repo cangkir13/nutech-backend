@@ -1,0 +1,200 @@
+[
+    {
+        "method": "GET",
+        "services":"service-kirim",
+        "path": "/master/ekspedisi",
+        "description": "GET All master ekspedisi",
+        "docs": "https://docs-sk.edp.com",
+        "status": true,
+        "category": "ServiceKirimMaster"
+    },
+    {
+        "method": "POST",
+        "services":"service-kirim",
+        "path": "/master/ekspedisi",
+        "description": "create new ekspedisi",
+        "docs": "https://docs-sk.edp.com",
+        "status": true,
+        "category": "ServiceKirimMaster"
+    },
+    {
+        "method": "PUT",
+        "services":"service-kirim",
+        "path": "/master/ekspedisi",
+        "description": "update ekspedisi",
+        "docs": "https://docs-sk.edp.com",
+        "status": true,
+        "category": "ServiceKirimMaster"
+    },
+    {
+        "method": "GET",
+        "services":"service-kirim",
+        "path": "/master/provinsi",
+        "description": "get location provinsi indonesia",
+        "docs": "https://docs-sk.edp.com",
+        "status": true,
+        "category": "ServiceKirimMaster"
+    },
+    {
+        "method": "GET",
+        "services":"service-kirim",
+        "path": "/master/kabupaten",
+        "description": "get location kabupaten indonesia",
+        "docs": "https://docs-sk.edp.com",
+        "status": true,
+        "category": "ServiceKirimMaster"
+    },
+    {
+        "method": "GET",
+        "services":"service-kirim",
+        "path": "/master/kecamatan",
+        "description": "get location kecamatan indonesia",
+        "docs": "https://docs-sk.edp.com",
+        "status": true,
+        "category": "ServiceKirimMaster"
+    },
+    {
+        "method": "GET",
+        "services":"service-kirim",
+        "path": "/master/kelurahan",
+        "description": "get location detail data kelurahan indonesia",
+        "docs": "https://docs-sk.edp.com",
+        "status": true,
+        "category": "ServiceKirimMaster"
+    },
+    {
+        "method": "POST",
+        "services":"service-kirim",
+        "path": "/master/store_area",
+        "description": null,
+        "docs": "https://docs-sk.edp.com",
+        "status": true,
+        "category": "ServiceKirimMaster"
+    },
+    {
+        "method": "GET",
+        "services":"service-kirim",
+        "path": "/master/sap",
+        "description": "get destination status and cod ekspedisi",
+        "docs": "https://docs-sk.edp.com",
+        "status": true,
+        "category": "ServiceKirimMaster"
+    },
+    {
+        "method": "GET",
+        "services":"service-kirim",
+        "path": "/master/rpx",
+        "description": "get destination status and cod ekspedisi",
+        "docs": "https://docs-sk.edp.com",
+        "status": true,
+        "category": "ServiceKirimMaster"
+    },
+    {
+        "method": "GET",
+        "services":"service-kirim",
+        "path": "/master/jnt",
+        "description": "get destination status and cod ekspedisi",
+        "docs": "https://docs-sk.edp.com",
+        "status": true,
+        "category": "ServiceKirimMaster"
+    },
+    {
+        "method": "GET",
+        "services":"service-kirim",
+        "path": "/master/jne",
+        "description": "get destination status and cod ekspedisi",
+        "docs": "https://docs-sk.edp.com",
+        "status": true,
+        "category": "ServiceKirimMaster"
+    },
+    {
+        "method": "GET",
+        "services":"service-kirim",
+        "path": "/master/klink_express",
+        "description": "get destination status and cod ekspedisi",
+        "docs": "https://docs-sk.edp.com",
+        "status": true,
+        "category": "ServiceKirimMaster"
+    },
+    {
+        "method": "GET",
+        "services":"service-kirim",
+        "path": "/master/ninja",
+        "description": "get destination status and cod ekspedisi",
+        "docs": "https://docs-sk.edp.com",
+        "status": true,
+        "category": "ServiceKirimMaster"
+    },
+    {
+        "method": "GET",
+        "services":"service-kirim",
+        "path": "/master/member",
+        "description": "get list all address destination member, with one are many data (params and query params)",
+        "docs": "https://docs-sk.edp.com",
+        "status": true,
+        "category": "ServiceKirimMaster"
+    },
+    {
+        "method": "POST",
+        "services":"service-kirim",
+        "path": "/master/member",
+        "description": "create new address destination member",
+        "docs": "https://docs-sk.edp.com",
+        "status": true,
+        "category": "ServiceKirimMaster"
+    },
+    {
+        "method": "PUT",
+        "services":"service-kirim",
+        "path": "/master/member",
+        "description": "update new address member",
+        "docs": "https://docs-sk.edp.com",
+        "status": true,
+        "category": "ServiceKirimMaster"
+    },
+    {
+        "method": "GET",
+        "services":"service-kirim",
+        "path": "/master/warehouse",
+        "description": "get list warehouse for all data and query params (for single data)",
+        "docs": "https://docs-sk.edp.com",
+        "status": true,
+        "category": "ServiceKirimMaster"
+    },
+    {
+        "method": "POST",
+        "services":"service-kirim",
+        "path": "/master/warehouse",
+        "description": "create new data warehouse / staockie",
+        "docs": "https://docs-sk.edp.com",
+        "status": true,
+        "category": "ServiceKirimMaster"
+    },
+    {
+        "method": "PUT",
+        "services":"service-kirim",
+        "path": "/master/warehouse",
+        "description": "update warehouse with 2 params whcd and loccd",
+        "docs": "https://docs-sk.edp.com",
+        "status": true,
+        "category": "ServiceKirimMaster"
+    },
+    {
+        "method": "POST",
+        "services":"service-kirim",
+        "path": "/master/warehouse_ekspedisi",
+        "description": "create",
+        "docs": "https://docs-sk.edp.com",
+        "status": true,
+        "category": "ServiceKirimMaster"
+    },
+    {
+        "method": "PUT",
+        "services":"service-kirim",
+        "path": "/master/warehouse_ekspedisi",
+        "description": null,
+        "docs": "https://docs-sk.edp.com",
+        "status": true,
+        "category": "ServiceKirimMaster"
+    }
+]
