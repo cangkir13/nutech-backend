@@ -1,0 +1,447 @@
+openapi: '3.0.2'
+servers:
+  - url: http://localhost:3001
+    description: API NUTECT
+info:
+  description: Restfull api NUTECT TEST
+  title: Restfull API TEST
+  version: '1.0.2'
+  contact:
+    email: lepek13@outlook.co.id
+
+tags:
+  - name: USER
+  - name: PRODUCT
+              
+paths:
+  /api/register:
+    post:
+      tags:
+        - USER
+      summary: register user
+      description: register user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: Email yg sdah terdafatar
+                username:
+                  type: string
+                  description: username  
+                password:
+                  type: string
+                  description: password
+                password_confirmation:
+                  type: string
+                  description: password confirmation
+      responses:
+        "200":
+          description: succes
+        "400":
+          description: bad request  
+        "422":
+          description: Field required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReqField"
+  /api/login:
+    post:
+      tags:
+        - USER
+      summary: login
+      description: login account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: Email yg sdah terdafatar  
+                password:
+                  type: string
+                  description: password
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    default: true
+                  data:
+                    type: array
+                    items:
+                      properties:
+                        provinsi:
+                          type: string
+        '401':
+          description: Invalid token   
+  /api/ForgotPassword:
+    post:
+      tags:
+        - USER
+      summary: Forgot password 
+      description: request reset password
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: Email yg sdah terdafatar
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    default: true
+                  data:
+                    type: array
+                    items:
+                      properties:
+                        provinsi:
+                          type: string
+        '401':
+          description: Invalid token                          
+  /api/ResetPassword:
+    post:
+      tags:
+        - USER
+      summary: Reset password
+      description: Make new password
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: Email yg sdah terdafatar
+                token:
+                  type: string
+                  description: token dari reset password  
+                password:
+                  type: string
+                  description: password
+                password_confirmation:
+                  type: string
+                  description: password confirmation
+      responses:
+        "200":
+          description: succes
+        "400":
+          description: bad request  
+        "422":
+          description: Field required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReqField"
+  /api/product:
+    get:
+      tags:
+        - PRODUCT
+      security:
+        - bearerAuth: []
+      summary: get data PRODUCT
+      description: Get all data PRODUCT
+      responses:
+        '200':
+          description: success
+        '404':
+          description: not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notfound'
+        '422':
+          description: Field required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReqField"
+    post:
+      tags:
+        - PRODUCT
+      security:
+        - bearerAuth: []
+      summary: Create PRODUCT
+      description: Create PRODUCT
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: name of product
+                price_buy:
+                  type: integer
+                price_sell:
+                  type: integer                  
+                stok:
+                  type: integer  
+                image:
+                  type: string
+                  format: base64
+            encoding:
+              image:
+                contentType: image/png, image/jpg
+      responses:
+        '200':
+          description: success
+        '404':
+          description: not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notfound'
+        '422':
+          description: Field required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReqField"
+  /api/product/{id}:
+    get:
+      tags:
+        - PRODUCT
+      security:
+        - bearerAuth: []
+      summary: get one PRODUCT
+      description: Get one PRODUCT
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id product
+      responses:
+        '200':
+          description: success
+        '404':
+          description: not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notfound'
+        '422':
+          description: Field required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReqField"
+    put:
+      tags:
+        - PRODUCT
+      security:
+        - bearerAuth: []
+      summary: update one product
+      description: update one product
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id product
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: name of product
+                price_buy:
+                  type: integer
+                price_sell:
+                  type: integer                  
+                stok:
+                  type: integer  
+                image:
+                  type: string
+                  format: base64
+            encoding:
+              image:
+                contentType: image/png, image/jpg    
+      responses:
+        '200':
+          description: success
+        '404':
+          description: not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notfound'
+        '422':
+          description: Field required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReqField"
+    delete:
+      tags:
+        - PRODUCT
+      security:
+        - bearerAuth: []
+      summary: Delete one
+      description: Delete one
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id product
+      responses:
+        '200':
+          description: success
+        '404':
+          description: not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notfound'
+        '422':
+          description: Field required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReqField"                      
+                                         
+components:
+  schemas:
+    Notfound:
+      type: object
+      properties:
+        success:
+          type: boolean
+          default: false
+        msg:
+          type: string
+          description: not found datas
+          example: data not found
+    ReqField:
+      type: object
+      properties:
+        success:
+          type: boolean
+          default: false
+        error:
+          type: string
+          description: required value parameters schemas
+          example: Field is required
+    forbidden:
+      type: object
+      properties:
+        success:
+          type: boolean
+          default: false
+        msg:
+          type: string
+          description: required value parameters schemas
+          example: ekspdisi already exist    
+    productOBJ:
+      required:
+        - jumlah
+        - berat
+      type: object
+      properties:
+        jumlah:
+          type: number
+          description: name ekspdisi 
+        berat:
+          type: number
+          description: setting kode 
+        berat_volume:
+          type: number
+          description: status cod available
+        nama_barang:
+          type: number
+          description: setting kode   
+        harga_barang:
+          type: number
+          description: setting kode  
+        keterangan:
+          type: string
+        bea_kirim:
+          type: number
+        panjang:
+          type: number
+        tinggi:
+          type: number
+        lebar:
+          type: number  
+    packageOBJ:
+      required:
+        - nomor_eksternal
+        - nomor_tracking
+        - id_order
+      type: object
+      properties:
+        nomor_eksternal:
+          type: string
+          description: nomor external 
+        nomor_tracking:
+          type: string
+          description: nomor uniq
+        id_paket:
+          type: string
+          description: no packet
+        id_order:
+          type: string
+          description: id packet
+        order_no_tag:
+          type: string  
+        jenis_produk:
+          type: string
+        jenis_komoditas:
+          type: string
+        jumlah_bagian:
+          type: number
+        tgl_order:
+          type: string 
+
+    detail_priceOBJ:
+      description: isi sesuai data response dari endpoint feecourierOP2
+      required:
+        - nomor_eksternal
+        - nomor_tracking
+        - id_order
+      type: object
+      properties:
+        fee:
+          type: number
+        feetax:  
+          type: number
+          description: responset dari Paket COD
+        insurance:
+          type: number
+          description: responset dari Paket COD  
+        insurancetax:  
+          type: number
+          description: responset dari Paket COD  
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

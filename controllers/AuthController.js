@@ -9,6 +9,7 @@ const config = require('../config')
 const bcryptjs = require('bcryptjs');
 
 const jwt = require('jsonwebtoken');
+const jwtSecret = process.env.JWT_SECRET || "test"
 
 class AuthController {
 

@@ -7,7 +7,6 @@ module.exports = {
         username:joi.string().required(),
         password: joi.string().min(3).max(15).required(),
         password_confirmation: joi.any().equal(joi.ref('password')).required(),
-        role:joi.string().required()
     }),
 
     // login

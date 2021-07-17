@@ -20,7 +20,6 @@ function uploadfile(err, req, res, next) {
             storage : multer.diskStorage({
                 destination : './assets/images/',
                 filename:function (req, file, cb) {
-                    console.log(file)
                     cb(null,Date.now()+file.originalname)
                 },
                 limit: { fileSize: '100' },
@@ -45,7 +44,7 @@ const AuthRoute = [
     {
         method:'post',
         path:'/product',
-        middleware:[uploadfile(), validate(schemas.post_product) ],
+        middleware:[JWTMid, uploadfile(), validate(schemas.post_product) ],
         controller:EndpointController.post
     },
     /**
@@ -54,8 +53,15 @@ const AuthRoute = [
     {
         method:'get',
         path:'/product',
-        // middleware:[ middlewarePrivate],
+        middleware:[ JWTMid],
         controller:EndpointController.getdata
+    },
+
+    {
+        method:'get',
+        path:'/product/:id',
+        middleware:[JWTMid],
+        controller:EndpointController.getOne
     },
 
     /**
@@ -64,40 +70,19 @@ const AuthRoute = [
     {
         method:'put',
         path:'/product/:id',
-        // middleware:[JWTMid, middlewarePrivate, validate(schemas.updateEndpoint)],
-        middleware:[ validate(schemas.post_product) ],
+        middleware:[JWTMid, uploadfile(), validate(schemas.post_product) ],
         controller:EndpointController.update
     },
 
     /**
      * get list menu access menu with jwt token
      */
-    // {
-    //     method:'get',
-    //     path:'/endpoint',
-    //     middleware:[JWTMid],
-    //     controller:EndpointController.getEndpointUser
-    // },
-   
-    /**
-     * delete/nonactive endpoint with change status endpoint
-     */
-    // {
-    //     method:'delete',
-    //     path:'/endpoint/delete/:id',
-    //     middleware:[JWTMid, middlewarePrivate],
-    //     controller:EndpointController.delete
-    // },
-
-    /**
-     * active endpoint with change status endpoint
-     */
-    // {
-    //     method:'post',
-    //     path:'/endpoint/active/:id',
-    //     middleware:[JWTMid, middlewarePrivate],
-    //     controller:EndpointController.Activited
-    // },
+    {
+        method:'delete',
+        path:'/product/:id',
+        middleware:[JWTMid],
+        controller:EndpointController.deleteOne
+    },
 
 ]
 

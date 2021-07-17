@@ -1,7 +1,10 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const cors = require('cors')
+const cors = require('cors');
+const yaml = require('yamljs');
+const swagerUi = require('swagger-ui-express');
+const docsApi = yaml.load('./documentation.yml')
 
 const routes = require('./routes')
 
@@ -14,10 +17,12 @@ const config = require("./config")
 app.use(cors())
 // parsing body json
 app.use(express.urlencoded({extended : true}));
-// app.use(bodyParser.urlencoded( { extended : false}));
-// app.use(bodyParser.json());
-// app.use(bodyParser())
+app.use(bodyParser.urlencoded( { extended : true}));
+app.use(bodyParser.json());
 
+// documentation API
+app.use('/document', swagerUi.serve, swagerUi.setup(docsApi));
+// LOAD ROUTE
 app.use('/api', routes)
 
 // error service

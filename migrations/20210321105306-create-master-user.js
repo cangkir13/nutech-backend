@@ -20,13 +20,6 @@ module.exports = {
       token: {
         type: Sequelize.STRING
       },
-      role:{
-        type:Sequelize.INTEGER
-      },
-      role_name: {
-        type: Sequelize.STRING,
-        defaultValue: 'cs'
-      },
       status:{
         type:Sequelize.BOOLEAN
       },

@@ -15,15 +15,36 @@ class GoodsController {
     }
 
     /**
+     * get one data
+     * @returns object
+     */
+     static async getOne(req, res) {
+        let {id} = req.params
+        const data = await model.findOne({
+            where : {id}
+        })
+        
+        if (!data) {
+            return res.json({
+                success : false,
+                message : "not found"
+            })
+        }
+        return res.json({
+            success: true,
+            result : data
+        })
+    }
+
+    /**
      * post data product
      * @returns true/false with arrays
      */
     static async post(req, res) {
         let body = req.body
-        // console.log(req.file.path)
+        body.image = "assets/images/"+req.file.filename
         
-        
-        // await model.create(body)
+        await model.create(body)
         return res.json({
             success : true,
             message : "data has been created"
@@ -37,6 +58,7 @@ class GoodsController {
     static async update(req, res) {
         let {id} = req.params
         let body = req.body
+        body.image = "assets/images/"+req.file.filename
         try {
             let find = await model.findOne({
                 where: {
@@ -69,6 +91,24 @@ class GoodsController {
         }
     }
 
+    static async deleteOne(req, res) {
+        let {id} = req.params
+        const find = await model.findOne({
+            where : {id}
+        })
+
+        if (!find) {
+            return res.json({
+                success : false,
+                message : 'id Not found'
+            })
+        }
+
+        await find.destroy();
+        return res.json({
+            success : true,
+        })
+    }
 }
 
 module.exports = GoodsController
