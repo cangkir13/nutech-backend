@@ -42,15 +42,22 @@ class GoodsController {
      * @returns true/false with arrays
      */
     static async post(req, res) {
-        let body = req.body
-        body.image = req.file.filename
-        body.fullpath = "assets/images/"+req.file.filename
-        
-        await model.create(body)
-        return res.json({
-            success : true,
-            message : "data has been created"
-        })
+        try {
+            let body = req.body
+            body.image = req.file.filename
+            body.fullpath = "assets/images/"+req.file.filename
+            
+            await model.create(body)
+            return res.json({
+                success : true,
+                message : "data has been created"
+            })
+        } catch (error) {
+            return res.status(500).json({
+                success : false,
+                error : error.message
+            })
+        }
     }
 
     /**
