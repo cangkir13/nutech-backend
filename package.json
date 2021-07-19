@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run nodemon",
-    "dev": "cross-env NODE_ENV=development pm2 start index.js --name NutechBackend --watch",
+    "dev": "pm2 start index.js --name NutechBackend --watch",
     "nodemon": "nodemon --exec npm run dev",
     "production": "cross-env NODE_ENV=production node index.js"
   },
