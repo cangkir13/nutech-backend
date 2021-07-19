@@ -18,7 +18,8 @@ module.exports = (sequelize, DataTypes) => {
     price_buy: DataTypes.INTEGER,
     price_sell: DataTypes.INTEGER,
     stok: DataTypes.INTEGER,
-    image: DataTypes.STRING
+    image: DataTypes.STRING,
+    fullpath : DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'tbl_goods',

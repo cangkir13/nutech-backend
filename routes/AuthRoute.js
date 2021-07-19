@@ -1,7 +1,6 @@
 const AuthController = require('../controllers/AuthController');
 const schemas = require('../middlewares/schemas/SchRegister');
 const validate = require('../middlewares/validation/validation');
-const JWTMid = require('../middlewares/validation/middlewareJWT'); 
 const RegisMid = require('../middlewares/validation/middlewareRegister');
 
 const AuthRoute = [

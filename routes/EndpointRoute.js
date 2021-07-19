@@ -6,7 +6,6 @@ const EndpointController = require('../controllers/GoodsController');
 const schemas = require('../middlewares/schemas/SchRegister');
 const validate = require('../middlewares/validation/validation');
 const JWTMid = require('../middlewares/validation/middlewareJWT'); 
-const middlewarePrivate = require('../middlewares/validation/middlewarePrivate');
 const multer = require('multer');
 
 function uploadfile(err, req, res, next) {
@@ -84,6 +83,11 @@ const AuthRoute = [
         controller:EndpointController.deleteOne
     },
 
+    {
+        method:'get',
+        path:'/image/:img',
+        controller:EndpointController.view
+    }
 ]
 
 module.exports = AuthRoute

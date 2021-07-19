@@ -1,5 +1,6 @@
 const model = require('../models').tbl_goods
-
+const fs = require('fs')
+const path = require('path')
 class GoodsController {
 
     /**
@@ -25,7 +26,7 @@ class GoodsController {
         })
         
         if (!data) {
-            return res.json({
+            return res.status(404).json({
                 success : false,
                 message : "not found"
             })
@@ -42,7 +43,8 @@ class GoodsController {
      */
     static async post(req, res) {
         let body = req.body
-        body.image = "assets/images/"+req.file.filename
+        body.image = req.file.filename
+        body.fullpath = "assets/images/"+req.file.filename
         
         await model.create(body)
         return res.json({
@@ -108,6 +110,35 @@ class GoodsController {
         return res.json({
             success : true,
         })
+    }
+
+    static async view(req, res) {
+        try {
+            let image = req.params.img
+            let findOne = await model.findOne({
+                where: {
+                    image
+                }
+            })
+            
+            
+            if ( findOne) {
+                let imageShow = path.join(__dirname, "../"+findOne.fullpath) ;
+                
+                if (fs.existsSync(imageShow)) {    
+                    res.sendFile(imageShow);    
+                } else {
+                    res.status(404).send(
+                        'image not found'
+                    )    
+                }
+            } else {
+                res.status(404).send('image not found')
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send('error on our server')
+        }
     }
 }
 
