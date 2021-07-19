@@ -4,10 +4,8 @@
   "description": "master api wms",
   "main": "index.js",
   "scripts": {
-    "start": "npm run nodemon",
-    "dev": "pm2 start index.js --name NutechBackend --watch",
-    "nodemon": "nodemon --exec npm run dev",
-    "production": "cross-env NODE_ENV=production node index.js"
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "lepek13",
   "license": "ISC",

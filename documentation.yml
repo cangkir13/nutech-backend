@@ -1,6 +1,6 @@
 openapi: '3.0.2'
 servers:
-  - url: http://backend.k-link.me/
+  - url: http://localhost:3001
     description: API NUTECT
 info:
   description: Restfull api NUTECT TEST
